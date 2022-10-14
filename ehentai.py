@@ -30,7 +30,7 @@ req.headers = {
 
 def downloadImageFile(dir, imgurl):
     filename = dir + '/' + imgurl.split('/')[-1]
-    print "Download Image File=", filename
+    print("Download Image File=", filename)
 
     for retry in range(1, 10):
         try:
@@ -40,7 +40,7 @@ def downloadImageFile(dir, imgurl):
             length = int(r.headers['Content-Length'])
 
             if (os.path.exists(filename)) and (os.stat(filename).st_size == length):
-                print 'Used exists file:'
+                print('Used exists file:')
             else:
                 # ファイルが存在しない、または、ファイルサイズとダウンロードサイズが異なる。
                 with open(filename, 'wb') as f:
@@ -55,17 +55,17 @@ def downloadImageFile(dir, imgurl):
             if info.st_size == length:
                 return filename
             else:
-                print 'Download size mismatch file size:' + str(info.st_size) + ' Content-Length:' + length
+                print('Download size mismatch file size:' + str(info.st_size) + ' Content-Length:' + length)
                 continue
 
         except requests.exceptions.ConnectionError:
-            print 'ConnectionError:' + imgurl
+            print('ConnectionError:' + imgurl)
             continue
         except requests.exceptions.Timeout:
-            print 'Timeout:' + imgurl
+            print('Timeout:' + imgurl)
             continue
         except requests.exceptions.ReadTimeout:
-            print 'Timeout:' + imgurl
+            print('Timeout:' + imgurl)
             continue
 
     # リトライ回数をオーバーで終了
@@ -114,13 +114,13 @@ def download_pics(url):
     title = title[0]
     print(title)
     basename = cleanPath(title)
-    print(basedir + '/' + basename)
+    print((basedir + '/' + basename))
     mkdir(basedir + '/' + basename)
 
     all_subURL = index.xpath('//div[@class="gdtm"]/div/a')
     nexturl = all_subURL[0].attrib['href']
     picurl = None
-    print('nexturl:' + nexturl)
+    print(('nexturl:' + nexturl))
     download = False
 
     while True:
@@ -132,7 +132,7 @@ def download_pics(url):
                 try:
                     text = req.get(picurl).text
                 except requests.exceptions.ConnectionError:
-                    print 'ConnectionError:' + picurl
+                    print('ConnectionError:' + picurl)
                     if retry != 10:
                         retry = retry + 1
                         continue
@@ -157,7 +157,7 @@ def download_pics(url):
 
         if '/g/509.gif' in imgurl:
             # ダウンロードの上限まで達した 3600秒待って
-            print '509 BRNDWIDTH EXCEEDED:' + url
+            print('509 BRNDWIDTH EXCEEDED:' + url)
             time.sleep(3600)
             nexturl = picurl
             continue
