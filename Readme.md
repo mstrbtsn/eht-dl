@@ -1,5 +1,7 @@
 # e-hentai downloder
 
+This program is a folk of [`e-hentai`](https://github.com/AnnieBrighton/e-hentai) by AnnieBrighton-san.
+
 ## environment
 
 Python3 (develop in Python3.10 environment）
