@@ -13,7 +13,7 @@ import getopt
 import shutil
 
 # ファイルをダウンロードし、zipファイルを作成する作業ディレクトリ
-TMPPATH='/tmp'
+TMPPATH = '/tmp'
 
 HTTP_CLIENT_CHUNK_SIZE=10240
 
