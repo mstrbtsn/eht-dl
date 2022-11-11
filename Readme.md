@@ -6,15 +6,20 @@ This program is a folk of [`e-hentai`](https://github.com/AnnieBrighton/e-hentai
 
 Python3 (develop in Python3.10 environment）
 
-to resolve dependency
+## Install
+
+You can install this script into your local Python environment by
 ```shell
-$ python3 -m pip install -r requirements.txt
+git clone <this-repos-url>
+pip install -e .
 ```
 
 ## Usage
 
+### specifing urls direcotry
+
 ```shell
-$ python -m eht_dl https://e-hentai.org/g/2358461/4de61f3815/
+$ eht-dl -u https://e-hentai.org/g/2358461/4de61f3815/
 ```
 
 if no error occur, the program make a zip file in the current directoryas following
@@ -23,4 +28,10 @@ if no error occur, the program make a zip file in the current directoryas follow
 ```shell
 $ md5sum *.zip
 654f30f6a9d7683ce9261bfe74d53e10  AI Art Tests [ai stable diffusion  tool aiimag.es].zip
+```
+
+### specifying urls by a list file
+
+```shell
+$ eht-dl -l ~~some_url_list.txt~~
 ```
