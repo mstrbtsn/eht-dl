@@ -188,12 +188,18 @@ def download_galleries(urls):
 
 
 parser = ArgumentParser()
-parser.add_argument('urls', nargs='*', type=str)
-parser.add_argument('--list', nargs='?', type=FileType('r'),
-                    default=None, required=False,
-                    help="a file include url list")
-def main(argv):
+list_or_file = parser.add_mutually_exclusive_group()
+list_or_file.add_argument('--urls', '-u', nargs='*', type=str,
+                          default=None, required=False,
+                          help="specify urls directory")
+list_or_file.add_argument('--list', '-l', nargs='?',
+                          type=FileType('r'),
+                          default=None, required=False,
+                          help="a file include url list")
+def main():
     global logger
+    global parser
+    argv = parser.parse_args()
     Log_Format = "%(levelname)s %(asctime)s - %(message)s"
     logging.basicConfig(
                     stream = sys.stdout,
@@ -205,11 +211,13 @@ def main(argv):
 
     if argv.list:
         urls = argv.list.read().strip().split('\n')
-    else:
+    elif argv.urls:
         urls = argv.urls
+    else:
+        raise Exception(
+                "at least one of urls or list must be specified.")
     download_galleries(urls)
 
 
 if __name__ == '__main__':
-    argv = parser.parse_args()
-    main(argv)
+    main()
