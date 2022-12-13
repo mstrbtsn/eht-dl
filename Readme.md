@@ -11,7 +11,7 @@ Python3 (develop in Python3.10 environment）
 You can install this script into your local Python environment by
 ```shell
 git clone <this-repos-url>
-pip install -e .
+pip install .
 ```
 
 ## Usage
