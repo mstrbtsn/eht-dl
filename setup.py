@@ -3,7 +3,7 @@ with open('requirements.txt') as requirements_file:
     install_requirements = requirements_file.read().splitlines()
 
 setup(
-    name="eht-dl",
+    name="eht_dl",
     version="0.3.0",
     description="eht-dl",
     author="mstrbtsn",
